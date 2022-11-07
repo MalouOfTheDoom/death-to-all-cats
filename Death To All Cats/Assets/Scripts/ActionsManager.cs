@@ -8,16 +8,13 @@ public class ActionsManager : MonoBehaviour
     public List<GameObject> allActionCardsInstances;
     public ActionsDeck actionsDeck;
 
-    public GameObject actionCardTemplate;
+    public GameObject actionCardPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        instanciateAllActionCards(allActionCards);
-        foreach(GameObject actionCard in allActionCardsInstances)
-        {
-            actionsDeck.addActionCard(actionCard);
-        }
+        this.allActionCardsInstances = instanciateAllActionCards(allActionCards);
+        actionsDeck.addActionCards(allActionCardsInstances);
     }
 
     // Update is called once per frame
@@ -26,15 +23,18 @@ public class ActionsManager : MonoBehaviour
         
     }
 
-    private void instanciateAllActionCards(List<ActionCard> allActionCards)
+    //Instanciate all the Action Cards by using a prefab and applying an actionCard ScriptableObject to each one.
+    private List<GameObject> instanciateAllActionCards(List<ActionCard> allActionCards)
     {
+        List<GameObject> instanciatedObjects = new List<GameObject>();
 
         foreach (ActionCard actionCard in allActionCards)
         {
-            GameObject cardActionInstance = GameObject.Instantiate(actionCardTemplate);
+            GameObject cardActionInstance = GameObject.Instantiate(actionCardPrefab, Vector3.zero, Quaternion.identity);
             cardActionInstance.GetComponent<ActionCardDisplay>().actionCard = allActionCards[0];
-            allActionCardsInstances.Add(cardActionInstance);
+            instanciatedObjects.Add(cardActionInstance);
         }
 
+        return instanciatedObjects;
     }
 }
