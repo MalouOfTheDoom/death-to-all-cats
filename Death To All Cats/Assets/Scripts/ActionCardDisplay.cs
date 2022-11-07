@@ -16,10 +16,9 @@ public class ActionCardDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         title.text = actionCard.title;
         description.text = actionCard.description;
         actionDuration.text = actionCard.actionDuration.ToString();
     }
-
-    
 }
