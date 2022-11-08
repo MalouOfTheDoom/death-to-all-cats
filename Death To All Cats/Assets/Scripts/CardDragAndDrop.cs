@@ -27,6 +27,7 @@ public class CardDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         image.raycastTarget = false;
         GetComponent<ActionCardDisplay>().maximize();
         transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+
     }
 
     public void OnDrag(PointerEventData eventData)
