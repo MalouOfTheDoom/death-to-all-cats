@@ -11,6 +11,9 @@ public class ActionCard : ScriptableObject
     public int actionDuration;
     public int remainingDuration;
 
+    public string actionName;
+    public Vector2 actionDirection = new Vector2(1, 0);
+
     public void Awake()
     {
         remainingDuration = actionDuration;

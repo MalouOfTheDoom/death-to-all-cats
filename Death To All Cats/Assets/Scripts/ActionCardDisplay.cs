@@ -12,8 +12,9 @@ public class ActionCardDisplay : MonoBehaviour
     public Image background; 
     public TextMeshProUGUI title;
     public TextMeshProUGUI description;
-
     public TextMeshProUGUI remainingDuration;
+
+    public string actionName;
     public bool minimized;
 
     // Start is called before the first frame update
@@ -24,17 +25,7 @@ public class ActionCardDisplay : MonoBehaviour
         remainingDuration.text = actionCard.remainingDuration.ToString();
 
         minimized = false;
-    }
-
-    private void Update()
-    {
-        //if (minimized)
-        //{
-        //}
-        //else
-        //{
-        //    description.text = "max";
-        //}
+        actionName = actionCard.actionName;
     }
 
     public void minimize()
