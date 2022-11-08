@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public ActionsManager actionManager;
+    public ActionsManager actionsManager;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,6 @@ public class GameManager : MonoBehaviour
 
     public void StartCycle()
     {
-        actionManager.StartCycle();
+        actionsManager.StartCycle();
     }
 }

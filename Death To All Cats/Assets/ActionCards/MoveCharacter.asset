@@ -15,3 +15,5 @@ MonoBehaviour:
   title: Deplacement
   description: "Le personnage se d\xE9place d'une case dans la direction selectionn\xE9e"
   actionDuration: 1
+  remainingDuration: 1
+  actionName: moveCharacter

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CharacterActions : MonoBehaviour
 {
-    PlayerController playerController;
-    public GameObject minimizedActionCardPrefab;
+    public GameObject character;
 
     public void Start()
     {
-        playerController = this.GetComponentInParent<PlayerController>();
+        character = GetCharacter();
+        //playerController = this.GetComponentInParent<PlayerController>();
     }
 
     public void addActionCards(List<GameObject> actionCards)
@@ -18,7 +18,16 @@ public class CharacterActions : MonoBehaviour
         {
             addActionCard(actionCard);
         }
+    }
 
+    public GameObject GetCharacter() //TODO: A MODIFIER C TRES MOCHE LA
+    {
+        //GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+        //foreach(GameObject character in characters)
+        //{
+        //    if (character.)
+        //}
+        return transform.parent.parent.parent.gameObject;
     }
 
     public GameObject GetActionCardByIndex(int index)
@@ -55,30 +64,18 @@ public class CharacterActions : MonoBehaviour
         Destroy(actionCard);
     }
 
-    private ActionCardDisplay? _getNextActionCard()
-    {
-        ActionCardDisplay nextActionCardDisplay = this.GetComponentInChildren<ActionCardDisplay>();
-
-        if (!nextActionCardDisplay) { return null; } //if no next action we return null
-
-        return nextActionCardDisplay;
-    }
-
     public void playNextActionCard()
     {
-        ActionCardDisplay? nextActionCard = _getNextActionCard();
+        GameObject nextActionCard = GetActionCardByIndex(0);
         if (nextActionCard)
         {
-            _actionMove(playerController, new Vector3(1, 0, 0));
-            //nextActionCard.consumeOneDuration();
-        }
-    }
+            ActionCardDisplay actionCardDisplay = nextActionCard.GetComponent<ActionCardDisplay>();
 
-    private void _actionMove(PlayerController playerController, Vector3 moveVector3)
-    {
-        Debug.Log("moving");
-        //PlayerController playerController = character.GetComponent<PlayerController>();
-        playerController.move(moveVector3);
+            string actionName = actionCardDisplay.actionName;
+            Vector2 actionDirection = actionCardDisplay.actionDirection;
+            nextActionCard.GetComponent<Actions>().playAction(actionName, new Vector2(1,0), character);
+            actionCardDisplay.consumeOneDuration();
+        }
     }
 
 }
