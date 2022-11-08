@@ -27,10 +27,8 @@ RectTransform:
   m_GameObject: {fileID: 119929016318602871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-
+  m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7128731092733895827}
   - {fileID: 7990671476919312996}
@@ -116,9 +114,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-
-  m_AnchoredPosition: {x: 3.6898, y: -83.7348}
-  m_SizeDelta: {x: 167.3794, y: 102.5303}
+  m_AnchoredPosition: {x: 5.114505, y: -71.69026}
+  m_SizeDelta: {x: 170.229, y: 126.6195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3304939674454769858
 CanvasRenderer:
@@ -406,9 +403,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 4639041899633169771}
-
-  parent: {fileID: 0}
   parentAfterDrag: {fileID: 0}
+  parentAfterWrongDrag: {fileID: 0}
+  firstTime: 1
 --- !u!114 &3128630786735967938
 MonoBehaviour:
   m_ObjectHideFlags: 0

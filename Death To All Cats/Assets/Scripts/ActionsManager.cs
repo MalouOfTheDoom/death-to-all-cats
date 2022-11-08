@@ -71,8 +71,8 @@ public class ActionsManager : MonoBehaviour
     public void cardFromCharacterToDeck(GameObject character, int index)
     {
         //get the actionCard from the characterActions
-        CharacterActions characterAction = character.GetComponent<PlayerController>().characterActions;
-        GameObject actionCardToMove = characterAction.GetActionCardByIndex(index);
+        CharacterActions characterActions = character.GetComponent<PlayerController>().characterActions;
+        GameObject actionCardToMove = characterActions.GetActionCardByIndex(index);
 
         if (!actionCardToMove) { return; }
 
