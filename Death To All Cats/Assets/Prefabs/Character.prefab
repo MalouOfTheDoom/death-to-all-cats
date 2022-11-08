@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cff7ccf8f0814c06b01e0fdfd49eab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimzedActionCardPrefab: {fileID: 3657837343304427781, guid: 69fcbb326642b47e6845425f4f8d7c06, type: 3}
 --- !u!1 &1814413700492230496
 GameObject:
   m_ObjectHideFlags: 0

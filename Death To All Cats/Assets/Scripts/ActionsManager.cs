@@ -9,18 +9,13 @@ public class ActionsManager : MonoBehaviour
     public ActionsDeck actionsDeck;
 
     public GameObject actionCardPrefab;
+    public GameObject minimizedActionCardPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         this.allActionCardsInstances = instanciateAllActionCards(allActionCards);
         actionsDeck.addActionCards(allActionCardsInstances);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     //Instanciate all the Action Cards by using a prefab and applying an actionCard ScriptableObject to each one.
@@ -30,8 +25,7 @@ public class ActionsManager : MonoBehaviour
 
         foreach (ActionCard actionCard in allActionCards)
         {
-            GameObject cardActionInstance = GameObject.Instantiate(actionCardPrefab, Vector3.zero, Quaternion.identity);
-            cardActionInstance.GetComponent<ActionCardDisplay>().actionCard = allActionCards[0];
+            GameObject cardActionInstance = actionCard.instanciateFromPrefab(actionCardPrefab);
             instanciatedObjects.Add(cardActionInstance);
         }
 
@@ -48,6 +42,20 @@ public class ActionsManager : MonoBehaviour
             characterActions.playNextActionCard();
         }
 
+    }
+
+    public void temporaryAddCard(int index=0) //this function is temporary and should be rewrited 
+    {
+        //get the actionCard from the actionsDeck
+        GameObject actionCardToMove = actionsDeck.GetActionCardByIndex(index);
+
+        if (!actionCardToMove) { return; }
+
+        //add the actionCard to the characterActions
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+        GameObject character = characters[0];
+        CharacterActions characterActions = character.GetComponentInChildren<CharacterActions>();
+        characterActions.addActionCard(actionCardToMove);
     }
 
 }

@@ -16,4 +16,11 @@ public class ActionCard : ScriptableObject
         remainingDuration = actionDuration;
     }
 
+    public GameObject instanciateFromPrefab(GameObject prefab)
+    {
+        GameObject cardActionInstance = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        cardActionInstance.GetComponent<ActionCardDisplay>().actionCard = this;
+        return cardActionInstance;
+    }
+
 }

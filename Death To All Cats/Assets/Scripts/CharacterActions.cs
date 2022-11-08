@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterActions : MonoBehaviour
 {
     PlayerController playerController;
+    public GameObject minimizedActionCardPrefab;
 
     public void Start()
     {
@@ -20,15 +21,38 @@ public class CharacterActions : MonoBehaviour
 
     }
 
+    public GameObject GetActionCardByIndex(int index)
+    {
+        int count = 0;
+        foreach (Transform child in transform)
+        {
+            if (count == index)
+            {
+                return child.transform.gameObject;
+            }
+            count += 1;
+        }
+        return null;
+    }
+
     public void addActionCard(GameObject actionCard)
     {
-        // ActionCard becomes a child of ActionsDeck
+        // ActionCard becomes a child of CharacterActions
         actionCard.transform.SetParent(transform);
+
+        //we don't forget to minimize the cardDisplay
+        actionCard.GetComponent<ActionCardDisplay>().minimize();
 
         // For some reason, the actionCard gets a scale of (2, 2, 2) when setting its parent to the ActionsDeck
         // so we reset it here.
-        actionCard.transform.localScale = new Vector3(1,1,1); 
+        actionCard.transform.localScale = new Vector3(1, 1, 1);
+    }
 
+
+
+    public void removeActionCard(GameObject actionCard)
+    {
+        Destroy(actionCard);
     }
 
     private ActionCardDisplay? _getNextActionCard()
