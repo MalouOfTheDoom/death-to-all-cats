@@ -31,18 +31,6 @@ public class ActionsManager : MonoBehaviour
         return instanciatedObjects;
     }
 
-    public void StartCycle()
-    {
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
-
-        foreach (GameObject character in characters)
-        {
-            CharacterActions characterActions = character.GetComponentInChildren<CharacterActions>();
-            characterActions.playNextActionCard();
-        }
-
-    }
-
     public void cardFromDeckToCharacter(GameObject character, int index)
     {
         //get the actionCard from the actionsDeck

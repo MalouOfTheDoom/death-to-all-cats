@@ -67,6 +67,7 @@ public class CharacterActions : MonoBehaviour
     public void playNextActionCard()
     {
         GameObject nextActionCard = GetActionCardByIndex(0);
+
         if (nextActionCard)
         {
             ActionCardDisplay actionCardDisplay = nextActionCard.GetComponent<ActionCardDisplay>();
