@@ -12,8 +12,9 @@ public class ActionCardDisplay : MonoBehaviour
     public Image background; 
     public TextMeshProUGUI title;
     public TextMeshProUGUI description;
-    public TextMeshProUGUI remainingDuration;
+    public TextMeshProUGUI remainingDurationTMP;
 
+    public int remainingDuration;
     public string actionName;
     public Vector2 actionDirection;
     public bool minimized;
@@ -23,7 +24,8 @@ public class ActionCardDisplay : MonoBehaviour
     {
         title.text = actionCard.title;
         description.text = actionCard.description;
-        remainingDuration.text = actionCard.remainingDuration.ToString();
+        remainingDuration = actionCard.remainingDuration;
+        remainingDurationTMP.text = remainingDuration.ToString();
 
         minimized = false;
         actionName = actionCard.actionName;
@@ -50,7 +52,7 @@ public class ActionCardDisplay : MonoBehaviour
         rectTransf.localPosition = new Vector3(0, -20, 0);
 
         //remainingDuration
-        rectTransf = remainingDuration.GetComponent<RectTransform>();
+        rectTransf = remainingDurationTMP.GetComponent<RectTransform>();
         rectTransf.sizeDelta = new Vector3(200, 50, 0);
         rectTransf.localPosition = new Vector3(0, 40, 0);
 
@@ -78,7 +80,7 @@ public class ActionCardDisplay : MonoBehaviour
         rectTransf.localPosition = new Vector3(0, 50, 0);
 
         //remainingDuration
-        rectTransf = remainingDuration.GetComponent<RectTransform>();
+        rectTransf = remainingDurationTMP.GetComponent<RectTransform>();
         rectTransf.sizeDelta = new Vector3(200, 50, 0);
         rectTransf.localPosition = new Vector3(60, 115, 0);
 
@@ -86,6 +88,16 @@ public class ActionCardDisplay : MonoBehaviour
 
     public void consumeOneDuration()
     {
-        Debug.Log(remainingDuration.text);
+        remainingDuration -= 1;
+        remainingDurationTMP.text = remainingDuration.ToString();
+        if (remainingDuration == 0)
+        {
+            destroyCardAction();
+        }
+    }
+
+    public void destroyCardAction()
+    {
+        Destroy(gameObject);
     }
 }

@@ -422,7 +422,8 @@ MonoBehaviour:
   background: {fileID: 4639041899633169771}
   title: {fileID: 242014304317761918}
   description: {fileID: 7628204463393292502}
-  remainingDuration: {fileID: 2056479742556428213}
+  remainingDurationTMP: {fileID: 2056479742556428213}
+  remainingDuration: 0
   actionName: 
   actionDirection: {x: 0, y: 0}
   minimized: 1

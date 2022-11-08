@@ -20,6 +20,14 @@ public class GameManager : MonoBehaviour
 
     public void StartCycle()
     {
+        //GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+
+        //foreach (GameObject character in characters)
+        //{
+        //    CharacterActions characterActions = character.GetComponentInChildren<CharacterActions>();
+        //    characterActions.playNextActionCard();
+        //}
+
         actionsManager.StartCycle();
     }
 }
