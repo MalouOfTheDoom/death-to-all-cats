@@ -9,7 +9,6 @@ public class ActionsManager : MonoBehaviour
     public ActionsDeck actionsDeck;
 
     public GameObject actionCardPrefab;
-    public GameObject minimizedActionCardPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -46,16 +45,39 @@ public class ActionsManager : MonoBehaviour
 
     public void temporaryAddCard(int index=0) //this function is temporary and should be rewrited 
     {
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+        GameObject character = characters[0];
+        cardFromDeckToCharacter(character, index);
+    }
+    public void temporaryRemoveCard(int index = 0) //this function is temporary and should be rewrited 
+    {
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+        GameObject character = characters[0];
+        cardFromCharacterToDeck(character, index);
+    }
+
+    public void cardFromDeckToCharacter(GameObject character, int index)
+    {
         //get the actionCard from the actionsDeck
         GameObject actionCardToMove = actionsDeck.GetActionCardByIndex(index);
 
         if (!actionCardToMove) { return; }
 
         //add the actionCard to the characterActions
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
-        GameObject character = characters[0];
         CharacterActions characterActions = character.GetComponentInChildren<CharacterActions>();
         characterActions.addActionCard(actionCardToMove);
+    }
+
+    public void cardFromCharacterToDeck(GameObject character, int index)
+    {
+        //get the actionCard from the characterActions
+        CharacterActions characterAction = character.GetComponent<PlayerController>().characterActions;
+        GameObject actionCardToMove = characterAction.GetActionCardByIndex(index);
+
+        if (!actionCardToMove) { return; }
+
+        //add the actionCard to the characterActions
+        actionsDeck.addActionCard(actionCardToMove);
     }
 
 }

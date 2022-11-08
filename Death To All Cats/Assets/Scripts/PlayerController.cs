@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public Transform movePoint;
     public LayerMask whatStopsMovement;
 
+    public CharacterActions characterActions;
+
     // Start is called before the first frame update
     void Start()
     {
