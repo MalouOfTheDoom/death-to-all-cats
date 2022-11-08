@@ -12,5 +12,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         CardDragAndDrop cardDragAndDrop = dropped.GetComponent<CardDragAndDrop>();
         cardDragAndDrop.parentAfterDrag = transform;
         Debug.Log(transform);
+        cardDragAndDrop.GetComponent<ActionCardDisplay>().minimize();
+        // cardDragAndDrop.transform.localScale = new Vector3(5/4*0.01f,5/4*0.01f,5/4*0.01f);
     }
 }

@@ -25,12 +25,14 @@ public class CardDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         transform.SetParent(transform.parent.parent);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
+        GetComponent<ActionCardDisplay>().maximize();
+        transform.localScale = new Vector3(0.5f,0.5f,0.5f);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
         transform.position = Input.mousePosition;
+        transform.localScale = new Vector3(0.5f,0.5f,0.5f);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -39,7 +41,7 @@ public class CardDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         Debug.Log(parentAfterDrag);
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
-
+        transform.localScale = new Vector3(1f,1f,1f);
     }
 
 
