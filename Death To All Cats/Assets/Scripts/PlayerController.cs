@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public Transform movePoint;
     public LayerMask whatStopsMovement;
+
+    public CharacterActions characterActions;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,11 +52,5 @@ public class PlayerController : MonoBehaviour
                 movePoint.position += moveVector3;
             }
         }
-    }
-
-    public void playNextStep(ActionCard actionCard)
-    {
-        //typeof(Actions).GetMethod(actionMethodName).Invoke(allActions, new[] { currentStep });
-        this.move(new Vector3(1,0,0));
     }
 }

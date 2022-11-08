@@ -17,12 +17,6 @@ public class ActionsManager : MonoBehaviour
         actionsDeck.addActionCards(allActionCardsInstances);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //Instanciate all the Action Cards by using a prefab and applying an actionCard ScriptableObject to each one.
     private List<GameObject> instanciateAllActionCards(List<ActionCard> allActionCards)
     {
@@ -30,8 +24,7 @@ public class ActionsManager : MonoBehaviour
 
         foreach (ActionCard actionCard in allActionCards)
         {
-            GameObject cardActionInstance = GameObject.Instantiate(actionCardPrefab, Vector3.zero, Quaternion.identity);
-            cardActionInstance.GetComponent<ActionCardDisplay>().actionCard = allActionCards[0];
+            GameObject cardActionInstance = actionCard.instanciateFromPrefab(actionCardPrefab);
             instanciatedObjects.Add(cardActionInstance);
         }
 
@@ -48,6 +41,43 @@ public class ActionsManager : MonoBehaviour
             characterActions.playNextActionCard();
         }
 
+    }
+
+    public void temporaryAddCard(int index=0) //this function is temporary and should be rewrited 
+    {
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+        GameObject character = characters[0];
+        cardFromDeckToCharacter(character, index);
+    }
+    public void temporaryRemoveCard(int index = 0) //this function is temporary and should be rewrited 
+    {
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+        GameObject character = characters[0];
+        cardFromCharacterToDeck(character, index);
+    }
+
+    public void cardFromDeckToCharacter(GameObject character, int index)
+    {
+        //get the actionCard from the actionsDeck
+        GameObject actionCardToMove = actionsDeck.GetActionCardByIndex(index);
+
+        if (!actionCardToMove) { return; }
+
+        //add the actionCard to the characterActions
+        CharacterActions characterActions = character.GetComponentInChildren<CharacterActions>();
+        characterActions.addActionCard(actionCardToMove);
+    }
+
+    public void cardFromCharacterToDeck(GameObject character, int index)
+    {
+        //get the actionCard from the characterActions
+        CharacterActions characterAction = character.GetComponent<PlayerController>().characterActions;
+        GameObject actionCardToMove = characterAction.GetActionCardByIndex(index);
+
+        if (!actionCardToMove) { return; }
+
+        //add the actionCard to the characterActions
+        actionsDeck.addActionCard(actionCardToMove);
     }
 
 }

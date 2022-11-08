@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 137040973408975225}
   - component: {fileID: 229396435565220206}
-  - component: {fileID: 8490065134342593212}
+  - component: {fileID: 2058400240132369950}
   m_Layer: 0
   m_Name: CharacterActions
   m_TagString: Untagged
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 10
---- !u!114 &8490065134342593212
+--- !u!114 &2058400240132369950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cff7ccf8f0814c06b01e0fdfd49eab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimizedActionCardPrefab: {fileID: 0}
 --- !u!1 &1814413700492230496
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +147,7 @@ MonoBehaviour:
   whatStopsMovement:
     serializedVersion: 2
     m_Bits: 0
+  characterActions: {fileID: 2058400240132369950}
 --- !u!1 &1814413700730183141
 GameObject:
   m_ObjectHideFlags: 0

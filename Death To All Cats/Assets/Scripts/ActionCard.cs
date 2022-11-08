@@ -9,8 +9,18 @@ public class ActionCard : ScriptableObject
     public string description;
 
     public int actionDuration;
+    public int remainingDuration;
 
-    public string actionMethodName;
-    public int currentStep;
+    public void Awake()
+    {
+        remainingDuration = actionDuration;
+    }
+
+    public GameObject instanciateFromPrefab(GameObject prefab)
+    {
+        GameObject cardActionInstance = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        cardActionInstance.GetComponent<ActionCardDisplay>().actionCard = this;
+        return cardActionInstance;
+    }
 
 }
