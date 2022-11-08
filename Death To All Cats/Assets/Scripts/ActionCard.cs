@@ -9,4 +9,8 @@ public class ActionCard : ScriptableObject
     public string description;
 
     public int actionDuration;
+
+    public string actionMethodName;
+    public int currentStep;
+
 }

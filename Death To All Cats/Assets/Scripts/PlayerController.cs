@@ -37,4 +37,23 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public void move(Vector3 moveVector3)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+
+        if (Vector2.Distance(transform.position, movePoint.position) <= .05f)
+        {
+            if (!Physics2D.OverlapCircle(movePoint.position + moveVector3, .2f, whatStopsMovement))
+            {
+                movePoint.position += moveVector3;
+            }
+        }
+    }
+
+    public void playNextStep(ActionCard actionCard)
+    {
+        //typeof(Actions).GetMethod(actionMethodName).Invoke(allActions, new[] { currentStep });
+        this.move(new Vector3(1,0,0));
+    }
 }
