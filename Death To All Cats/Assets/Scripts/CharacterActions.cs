@@ -31,22 +31,30 @@ public class CharacterActions : MonoBehaviour
 
     }
 
-    private ActionCard? _getNextActionCard()
+    private ActionCardDisplay? _getNextActionCard()
     {
         ActionCardDisplay nextActionCardDisplay = this.GetComponentInChildren<ActionCardDisplay>();
 
         if (!nextActionCardDisplay) { return null; } //if no next action we return null
 
-        return nextActionCardDisplay.actionCard;
+        return nextActionCardDisplay;
     }
 
     public void playNextActionCard()
     {
-        ActionCard? nextActionCard = _getNextActionCard();
+        ActionCardDisplay? nextActionCard = _getNextActionCard();
         if (nextActionCard)
         {
-            playerController.playNextStep(nextActionCard);
+            _actionMove(playerController, new Vector3(1, 0, 0));
+            //nextActionCard.consumeOneDuration();
         }
     }
-    
+
+    private void _actionMove(PlayerController playerController, Vector3 moveVector3)
+    {
+        Debug.Log("moving");
+        //PlayerController playerController = character.GetComponent<PlayerController>();
+        playerController.move(moveVector3);
+    }
+
 }

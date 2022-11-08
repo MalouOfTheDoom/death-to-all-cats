@@ -9,8 +9,11 @@ public class ActionCard : ScriptableObject
     public string description;
 
     public int actionDuration;
+    public int remainingDuration;
 
-    public string actionMethodName;
-    public int currentStep;
+    public void Awake()
+    {
+        remainingDuration = actionDuration;
+    }
 
 }
