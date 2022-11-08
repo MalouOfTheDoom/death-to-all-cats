@@ -15,6 +15,7 @@ public class ActionCardDisplay : MonoBehaviour
     public TextMeshProUGUI remainingDuration;
 
     public string actionName;
+    public Vector2 actionDirection;
     public bool minimized;
 
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class ActionCardDisplay : MonoBehaviour
 
         minimized = false;
         actionName = actionCard.actionName;
+        actionDirection = actionCard.actionDirection;
     }
 
     public void minimize()
@@ -80,5 +82,10 @@ public class ActionCardDisplay : MonoBehaviour
         rectTransf.sizeDelta = new Vector3(200, 50, 0);
         rectTransf.localPosition = new Vector3(60, 115, 0);
 
+    }
+
+    public void consumeOneDuration()
+    {
+        Debug.Log(remainingDuration.text);
     }
 }

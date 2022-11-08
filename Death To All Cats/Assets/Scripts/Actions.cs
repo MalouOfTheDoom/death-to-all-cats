@@ -21,7 +21,6 @@ public class Actions : MonoBehaviour
     private void _moveCharacter(Vector2 actionDirection, GameObject character)
     {
         PlayerController playerController = character.GetComponent<PlayerController>();
-        playerController.move(new Vector3(1,1, 0));
-
+        playerController.move(new Vector3(actionDirection.x, actionDirection.y , 0));
     }
 }

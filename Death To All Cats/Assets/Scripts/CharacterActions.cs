@@ -20,7 +20,7 @@ public class CharacterActions : MonoBehaviour
         }
     }
 
-    public GameObject GetCharacter()
+    public GameObject GetCharacter() //TODO: A MODIFIER C TRES MOCHE LA
     {
         //GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
         //foreach(GameObject character in characters)
@@ -69,18 +69,13 @@ public class CharacterActions : MonoBehaviour
         GameObject nextActionCard = GetActionCardByIndex(0);
         if (nextActionCard)
         {
-            string actionName = nextActionCard.GetComponent<ActionCardDisplay>().actionName;
-            nextActionCard.GetComponent<Actions>().playAction(actionName, new Vector2(1,0), character);
-            //_actionMove(playerController, new Vector3(1, 0, 0));
-            //nextActionCard.consumeOneDuration();
-        }
-    }
+            ActionCardDisplay actionCardDisplay = nextActionCard.GetComponent<ActionCardDisplay>();
 
-    private void _actionMove(PlayerController playerController, Vector3 moveVector3)
-    {
-        Debug.Log("moving");
-        //PlayerController playerController = character.GetComponent<PlayerController>();
-        playerController.move(moveVector3);
+            string actionName = actionCardDisplay.actionName;
+            Vector2 actionDirection = actionCardDisplay.actionDirection;
+            nextActionCard.GetComponent<Actions>().playAction(actionName, new Vector2(1,0), character);
+            actionCardDisplay.consumeOneDuration();
+        }
     }
 
 }
