@@ -32,6 +32,7 @@ public class ActionsDeck : MonoBehaviour
     {
         // ActionCard becomes a child of ActionsDeck
         actionCard.transform.SetParent(transform);
+        Debug.Log(actionCard.transform);
 
         //we don't forget to maximize the cardDisplay
         actionCard.GetComponent<ActionCardDisplay>().maximize();
