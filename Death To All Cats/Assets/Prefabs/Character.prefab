@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1134937347}
   - component: {fileID: 1134937346}
   - component: {fileID: 3111809875004758056}
+  - component: {fileID: 5126395887125115024}
   m_Layer: 0
   m_Name: characterActions
   m_TagString: Untagged
@@ -37,8 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-
-  m_AnchoredPosition: {x: -199, y: 101}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1134937348
@@ -113,9 +113,21 @@ MonoBehaviour:
   m_StartAxis: 0
   m_CellSize: {x: 100, y: 100}
   m_Spacing: {x: 0, y: 0}
-
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &5126395887125115024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134937344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cff7ccf8f0814c06b01e0fdfd49eab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 1814413700492230496}
 --- !u!1 &1814413700492230496
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +200,7 @@ MonoBehaviour:
   whatStopsMovement:
     serializedVersion: 2
     m_Bits: 0
-  characterActions: {fileID: 0}
+  characterActions: {fileID: 5126395887125115024}
 --- !u!1 &1814413700730183141
 GameObject:
   m_ObjectHideFlags: 0
