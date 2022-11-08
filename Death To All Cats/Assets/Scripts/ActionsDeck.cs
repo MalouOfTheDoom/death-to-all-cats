@@ -18,6 +18,7 @@ public class ActionsDeck : MonoBehaviour
     {
         // ActionCard becomes a child of ActionsDeck
         actionCard.transform.SetParent(transform);
+        Debug.Log(actionCard.transform);
 
         // For some reason, the actionCard gets a scale of (2, 2, 2) when setting its parent to the ActionsDeck
         // so we reset it here.
