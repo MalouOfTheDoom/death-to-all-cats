@@ -1000,6 +1000,63 @@ MonoBehaviour:
   FunctionsToCall:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &1560210126
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1814413700492230496, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_Name
+      value: Character (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814413700492230497, guid: b67216b87ab2549789dc480448768738, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b67216b87ab2549789dc480448768738, type: 3}
 --- !u!1 &1769855563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1177,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionsManager: {fileID: 2082102607}
+  isCycleStarted: 0
+  isGameWon: 0
+  allDecksAreConsumed: 0
 --- !u!1 &1849566202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,6 +1569,7 @@ MonoBehaviour:
   allActionCardsInstances: []
   actionsDeck: {fileID: 930811315}
   actionCardPrefab: {fileID: 8547141504009315962, guid: 1190daa8880fe43d99fd7d700615888a, type: 3}
+  allDecksAreConsumed: 0
 --- !u!4 &2082102608
 Transform:
   m_ObjectHideFlags: 0
