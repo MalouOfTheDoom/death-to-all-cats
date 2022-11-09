@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public bool isGameWon;
     public bool allDecksAreConsumed;
 
+    public GameOverScreen gameOverScreen;
+
     private GameObject[] characters;
 
     // Start is called before the first frame update
@@ -52,8 +54,7 @@ public class GameManager : MonoBehaviour
 
             if (allDecksAreConsumed)
             {
-                isCycleStarted = false;
-                //TODO: gameOver function
+                GameOver();
                 yield break;
             }
 
@@ -87,6 +88,16 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Load scene called Game
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.Setup();
+    }
+
+    public void loadLevelSelection()
+    {
+        SceneManager.LoadScene("LevelSelection");
     }
 
 
