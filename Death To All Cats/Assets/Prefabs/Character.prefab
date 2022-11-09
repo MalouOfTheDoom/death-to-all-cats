@@ -138,8 +138,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1814413700492230497}
-  - component: {fileID: 1814413700492230499}
   - component: {fileID: 1814413700492230498}
+  - component: {fileID: 5009511817452553899}
   m_Layer: 0
   m_Name: Character
   m_TagString: Character
@@ -164,7 +164,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1814413700492230499
+--- !u!114 &1814413700492230498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814413700492230496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2498e68826447fa91059fcf81d18ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  movePoint: {fileID: 1814413700730183142}
+  whatStopsMovement:
+    serializedVersion: 2
+    m_Bits: 256
+  whatKillsCharacter:
+    serializedVersion: 2
+    m_Bits: 128
+  anim: {fileID: 5009511817452553899}
+  characterActions: {fileID: 5126395887125115024}
+--- !u!95 &5009511817452553899
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -184,24 +206,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1814413700492230498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814413700492230496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2498e68826447fa91059fcf81d18ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  movePoint: {fileID: 1814413700730183142}
-  whatStopsMovement:
-    serializedVersion: 2
-    m_Bits: 0
-  characterActions: {fileID: 5126395887125115024}
 --- !u!1 &1814413700730183141
 GameObject:
   m_ObjectHideFlags: 0
