@@ -6,13 +6,17 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Transform movePoint;
+    private bool isDead;
     public LayerMask whatStopsMovement;
+    public LayerMask whatKillsCharacter;
+    public Animator anim;
 
     public CharacterActions characterActions;
 
     // Start is called before the first frame update
     void Start()
     {
+        isDead = false;
         movePoint.parent = null;
     }
 
@@ -49,8 +53,22 @@ public class PlayerController : MonoBehaviour
         {
             if (!Physics2D.OverlapCircle(movePoint.position + moveVector3, .2f, whatStopsMovement))
             {
+                if(Physics2D.OverlapCircle(movePoint.position + moveVector3, .2f, whatKillsCharacter))
+                {
+                    die();
+                    Debug.Log(getDead());
+                }
                 movePoint.position += moveVector3;
             }
         }
+    }
+    public void die()
+    {
+        anim.SetBool("dead", true);
+        isDead = true;
+    }
+    public bool getDead()
+    {
+        return isDead;
     }
 }

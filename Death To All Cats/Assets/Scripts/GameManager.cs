@@ -9,10 +9,11 @@ public class GameManager : MonoBehaviour
     public ActionsManager actionsManager;
 
     public bool isCycleStarted;
-    public bool isGameWon;
+    public bool allCharactersAreDead;
     public bool allDecksAreConsumed;
 
     public GameOverScreen gameOverScreen;
+    public GameWonScreen gameWonScreen;
 
     private GameObject[] characters;
 
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isCycleStarted = false;
-        isGameWon = false;
+        allCharactersAreDead = false;
         allDecksAreConsumed = false;
 
         characters = GameObject.FindGameObjectsWithTag("Character");
@@ -46,9 +47,9 @@ public class GameManager : MonoBehaviour
                 yield break;
             }
 
-            if (isGameWon)
+            if (allCharactersAreDead)
             {
-                //TODO
+                GameWon();
                 yield break;
             }
 
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
             }
 
             bool[] emptyDecks = new bool[characters.Length]; //for each character, indicates if its characterActions has no action left
+            bool[] deadCharacters = new bool[characters.Length];
             int index = 0;
             foreach (GameObject character in characters)
             {
@@ -66,12 +68,15 @@ public class GameManager : MonoBehaviour
                 characterActions.playNextActionCard();
 
                 emptyDecks[index] = (characterActions.numberOfActionCards <= 0);
+                PlayerController playerController = character.GetComponent<PlayerController>();
+                deadCharacters[index] = playerController.getDead();
 
                 index += 1;
             }
 
             //when all characters have played one step, we check if all decks are empty
             allDecksAreConsumed = (emptyDecks.All(x => x)); //check if all bool in emptyDecks are true
+            allCharactersAreDead = (deadCharacters.All(x => x));
 
             //Wait for 1 seconds
             yield return new WaitForSeconds(1);
@@ -89,10 +94,18 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Load scene called Game
     }
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
     public void GameOver()
     {
         gameOverScreen.Setup();
+    }
+    public void GameWon()
+    {
+        gameWonScreen.Setup();
     }
 
     public void loadLevelSelection()
