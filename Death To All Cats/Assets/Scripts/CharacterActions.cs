@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterActions : MonoBehaviour
 {
     public GameObject character;
+    public int numberOfActionCards = 0;
 
     public void Start()
     {
@@ -55,18 +56,21 @@ public class CharacterActions : MonoBehaviour
         // For some reason, the actionCard gets a scale of (2, 2, 2) when setting its parent to the ActionsDeck
         // so we reset it here.
         actionCard.transform.localScale = new Vector3(1, 1, 1);
+
+        numberOfActionCards += 1;
     }
-
-
 
     public void removeActionCard(GameObject actionCard)
     {
         Destroy(actionCard);
+
+        numberOfActionCards -= 1;
     }
 
     public void playNextActionCard()
     {
         GameObject nextActionCard = GetActionCardByIndex(0);
+
         if (nextActionCard)
         {
             ActionCardDisplay actionCardDisplay = nextActionCard.GetComponent<ActionCardDisplay>();

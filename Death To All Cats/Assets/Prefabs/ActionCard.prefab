@@ -1581,6 +1581,7 @@ MonoBehaviour:
   title: {fileID: 242014304317761918}
   description: {fileID: 7628204463393292502}
   remainingDurationTMP: {fileID: 2056479742556428213}
+  remainingDuration: 0
   actionName: 
   actionDirection: {x: 0, y: 0}
   minimized: 1
