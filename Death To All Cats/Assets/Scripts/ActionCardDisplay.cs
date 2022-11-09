@@ -15,6 +15,7 @@ public class ActionCardDisplay : MonoBehaviour
     public TextMeshProUGUI description;
     public TextMeshProUGUI remainingDurationTMP;
 
+    public int actionDuration;
     public int remainingDuration;
     public string actionName;
     public Vector2 actionDirection;
@@ -25,6 +26,7 @@ public class ActionCardDisplay : MonoBehaviour
     {
         title.text = actionCard.title;
         description.text = actionCard.description;
+        actionDuration = actionCard.actionDuration;
         remainingDuration = actionCard.remainingDuration;
         remainingDurationTMP.text = remainingDuration.ToString();
         icone.sprite = actionCard.icone;

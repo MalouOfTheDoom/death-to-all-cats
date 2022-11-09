@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,19 @@ using UnityEngine.Events;
 public class Actions : MonoBehaviour
 {
     public UnityEvent FunctionsToCall;
-    public void playAction(string actionName, Vector2 actionDirection, GameObject character)
+    public ElementaryActions elementaryActions;
+
+    private void Start()
+    {
+        elementaryActions = new ElementaryActions();
+    }
+
+    public void playAction(string actionName, Vector2 actionDirection, GameObject character, int currentStep)
     {
         switch(actionName)
         {
             case "moveCharacter":
-                _moveCharacter(actionDirection, character);
+                _moveCharacterByX(actionDirection, character, currentStep, 1);
                 return;
             case "moveCharacter2":
                 _moveCharacter2(actionDirection, character);
@@ -31,8 +39,17 @@ public class Actions : MonoBehaviour
         }
     }
 
-    private void _moveCharacter(Vector2 actionDirection, GameObject character)
+    //TODO: these functions are called each step, but step creation process should only happen once (performance issues)
+    private void _moveCharacterByX(Vector2 actionDirection, GameObject character, int currentStep, int x)
     {
+        List<Action> steps = new List<Action>(); //we use a concept called Delegates
+        for(int i=0; i<=x; i++)
+        {
+            steps.Add(() => elementaryActions.moveCharacterBy1(actionDirection, character));
+        }
+
+        steps[currentStep].DynamicInvoke(actionDirection, character);
+
         PlayerController playerController = character.GetComponent<PlayerController>();
         playerController.move(new Vector3(actionDirection.x, actionDirection.y , 0));
     }

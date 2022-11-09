@@ -81,7 +81,11 @@ public class CharacterActions : MonoBehaviour
 
             string actionName = actionCardDisplay.actionName;
             Vector2 actionDirection = actionCardDisplay.actionDirection;
-            nextActionCard.GetComponent<Actions>().playAction(actionName, actionDirection, character);
+
+            //we get the currentStep of the card which equals inialDuration - remainingDuration
+            int currentStep = actionCardDisplay.actionDuration - actionCardDisplay.remainingDuration;
+
+            nextActionCard.GetComponent<Actions>().playAction(actionName, actionDirection, character, currentStep);
             actionCardDisplay.consumeOneDuration();
 
             //destroy the card if no duration left
