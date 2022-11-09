@@ -20,8 +20,6 @@ public class CardDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
             firstTime = false;
         }
         parentAfterDrag = parentAfterWrongDrag;
-
-        Debug.Log("OnBeginDrag");
         transform.SetParent(transform.parent.parent);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
@@ -38,8 +36,6 @@ public class CardDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
-        Debug.Log(parentAfterDrag);
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
         transform.localScale = new Vector3(1f,1f,1f);
