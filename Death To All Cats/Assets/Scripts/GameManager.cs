@@ -25,39 +25,49 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _updateCycle();
+        
     }
 
     //Run one step of the cycle
-    private void _updateCycle()
+    IEnumerator _updateCycle()
     {
-        if (!isCycleStarted)
+        int i = 0;
+        while(true)
         {
-            return;
-        }
+            i += 1;
+            if (i >= 100) { Debug.Log("100 rep"); break;  }
+            if (!isCycleStarted)
+            {
+                yield break;
+            }
 
-        if (isGameWon)
-        {
-            //TODO
-            return;
-        }
+            if (isGameWon)
+            {
+                //TODO
+                yield break;
+            }
 
-        if (allDecksAreConsumed)
-        {
-            //TODO
-            return;
-        }
+            if (allDecksAreConsumed)
+            {
+                //TODO
+                yield break;
+            }
 
-        foreach (GameObject character in characters)
-        {
-            CharacterActions characterActions = character.GetComponentInChildren<CharacterActions>();
-            characterActions.playNextActionCard();
+            foreach (GameObject character in characters)
+            {
+                CharacterActions characterActions = character.GetComponentInChildren<CharacterActions>();
+                characterActions.playNextActionCard();
+            }
+
+            //Wait for 2 seconds
+            yield return new WaitForSeconds(2);
         }
     }
 
     public void StartCycle()
     {
         isCycleStarted = true;
+        StartCoroutine(_updateCycle());
     }
 
 
