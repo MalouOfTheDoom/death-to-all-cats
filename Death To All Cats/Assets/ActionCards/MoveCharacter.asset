@@ -16,4 +16,6 @@ MonoBehaviour:
   description: "Le personnage se d\xE9place d'une case dans la direction selectionn\xE9e"
   actionDuration: 1
   remainingDuration: 1
+  icone: {fileID: 21300000, guid: f8b977e191f8dc84d8b46be54c0e3b20, type: 3}
   actionName: moveCharacter
+  actionDirection: {x: 1, y: 0}

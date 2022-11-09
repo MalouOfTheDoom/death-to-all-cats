@@ -10,6 +10,7 @@ public class ActionCardDisplay : MonoBehaviour
     public ActionCard actionCard;
 
     public Image background; 
+    public Image icone;
     public TextMeshProUGUI title;
     public TextMeshProUGUI description;
     public TextMeshProUGUI remainingDurationTMP;
@@ -26,6 +27,7 @@ public class ActionCardDisplay : MonoBehaviour
         description.text = actionCard.description;
         remainingDuration = actionCard.remainingDuration;
         remainingDurationTMP.text = remainingDuration.ToString();
+        icone.sprite = actionCard.icone;
 
         minimized = false;
         actionName = actionCard.actionName;
@@ -41,19 +43,26 @@ public class ActionCardDisplay : MonoBehaviour
 
         //description
         description.enabled = false;
+        //icone
+        var tempColor = icone.color;
+        tempColor.a = 255;
+        icone.color = tempColor;
+        icone.transform.localPosition += new Vector3(0,50,0);
+
+        RectTransform rectTransf;
 
         //background
-        RectTransform rectTransf = background.GetComponent<RectTransform>();
+        rectTransf = background.GetComponent<RectTransform>();
         rectTransf.sizeDelta = new Vector3(150, 150, 0);
 
         //title
-        rectTransf = title.GetComponent<RectTransform>();
-        rectTransf.sizeDelta = new Vector3(160, 150, 0);
-        rectTransf.localPosition = new Vector3(0, -20, 0);
+        title.enabled = false;
 
         //remainingDuration
         rectTransf = remainingDurationTMP.GetComponent<RectTransform>();
-        rectTransf.sizeDelta = new Vector3(200, 50, 0);
+        rectTransf.sizeDelta = new Vector3(150, 85, 0);
+        remainingDurationTMP.fontSize = 60;
+
         rectTransf.localPosition = new Vector3(0, 40, 0);
 
 
@@ -63,7 +72,10 @@ public class ActionCardDisplay : MonoBehaviour
     public void maximize()
     {
         minimized = false;
-
+        var tempColor = icone.color;
+        tempColor.a = 0.5f;
+        icone.color = tempColor;
+        icone.transform.localPosition = new Vector3(0,-71,0);
         //transparency
         gameObject.GetComponent<CanvasGroup>().alpha = 1;
 
@@ -75,9 +87,7 @@ public class ActionCardDisplay : MonoBehaviour
         rectTransf.sizeDelta = new Vector3(200, 300, 0);
 
         //title
-        rectTransf = title.GetComponent<RectTransform>();
-        rectTransf.sizeDelta = new Vector3(150, 50, 0);
-        rectTransf.localPosition = new Vector3(0, 50, 0);
+        title.enabled = true;
 
         //remainingDuration
         rectTransf = remainingDurationTMP.GetComponent<RectTransform>();
@@ -100,4 +110,22 @@ public class ActionCardDisplay : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    
+    public void upDirection()
+    {
+        actionDirection = new Vector2(0,1);
+    }
+    public void downDirection()
+    {
+        actionDirection = new Vector2(0,-1);
+    }
+    public void leftDirection()
+    {
+        actionDirection = new Vector2(-1,0);
+    }
+    public void rightDirection()
+    {
+        actionDirection = new Vector2(1,0);
+    }
+
 }
