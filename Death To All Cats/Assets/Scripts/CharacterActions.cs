@@ -77,7 +77,7 @@ public class CharacterActions : MonoBehaviour
 
             string actionName = actionCardDisplay.actionName;
             Vector2 actionDirection = actionCardDisplay.actionDirection;
-            nextActionCard.GetComponent<Actions>().playAction(actionName, actionDirection, character);
+            nextActionCard.GetComponent<Actions>().playAction(actionName, new Vector2(1,0), character);
             actionCardDisplay.consumeOneDuration();
         }
     }

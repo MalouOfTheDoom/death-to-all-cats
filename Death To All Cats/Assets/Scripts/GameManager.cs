@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using System.Linq;
 using UnityEngine;
 
@@ -81,6 +82,11 @@ public class GameManager : MonoBehaviour
         if (isCycleStarted) { return; }
         isCycleStarted = true;
         StartCoroutine(_updateCycle());
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Load scene called Game
     }
 
 
