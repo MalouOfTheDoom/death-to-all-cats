@@ -100,15 +100,6 @@ public class ActionCardDisplay : MonoBehaviour
     {
         remainingDuration -= 1;
         remainingDurationTMP.text = remainingDuration.ToString();
-        if (remainingDuration == 0)
-        {
-            destroyCardAction();
-        }
-    }
-
-    public void destroyCardAction()
-    {
-        Destroy(gameObject);
     }
     
     public void upDirection()

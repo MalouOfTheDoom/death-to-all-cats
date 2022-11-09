@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using System.Linq;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     public bool isCycleStarted;
     public bool isGameWon;
     public bool allDecksAreConsumed;
+
+    public GameOverScreen gameOverScreen;
 
     private GameObject[] characters;
 
@@ -51,8 +54,7 @@ public class GameManager : MonoBehaviour
 
             if (allDecksAreConsumed)
             {
-                isCycleStarted = false;
-                //TODO: gameOver function
+                GameOver();
                 yield break;
             }
 
@@ -81,6 +83,21 @@ public class GameManager : MonoBehaviour
         if (isCycleStarted) { return; }
         isCycleStarted = true;
         StartCoroutine(_updateCycle());
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Load scene called Game
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.Setup();
+    }
+
+    public void loadLevelSelection()
+    {
+        SceneManager.LoadScene("LevelSelection");
     }
 
 
