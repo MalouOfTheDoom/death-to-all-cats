@@ -62,8 +62,12 @@ public class CharacterActions : MonoBehaviour
 
     public void removeActionCard(GameObject actionCard)
     {
-        Destroy(actionCard);
+        numberOfActionCards -= 1;
+    }
 
+    public void destroyActionCard(GameObject actionCard)
+    {
+        Destroy(actionCard);
         numberOfActionCards -= 1;
     }
 
@@ -79,6 +83,12 @@ public class CharacterActions : MonoBehaviour
             Vector2 actionDirection = actionCardDisplay.actionDirection;
             nextActionCard.GetComponent<Actions>().playAction(actionName, new Vector2(1,0), character);
             actionCardDisplay.consumeOneDuration();
+
+            //destroy the card if no duration left
+            if (actionCardDisplay.remainingDuration <= 0)
+            {
+                destroyActionCard(nextActionCard);
+            }
         }
     }
 

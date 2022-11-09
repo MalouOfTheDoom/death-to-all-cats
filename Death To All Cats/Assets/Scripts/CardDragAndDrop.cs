@@ -11,6 +11,8 @@ public class CardDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     [HideInInspector] public Transform parentAfterWrongDrag;
     public bool firstTime = true;
 
+    public ActionsDeck actionsDeck; 
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -26,6 +28,8 @@ public class CardDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         GetComponent<ActionCardDisplay>().maximize();
         transform.localScale = new Vector3(0.5f,0.5f,0.5f);
 
+
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -39,6 +43,7 @@ public class CardDragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
         transform.localScale = new Vector3(1f,1f,1f);
+
     }
 
 
