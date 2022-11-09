@@ -15,6 +15,7 @@ public class ActionCardDisplay : MonoBehaviour
     public TextMeshProUGUI description;
     public TextMeshProUGUI remainingDurationTMP;
 
+    public int remainingDuration;
     public string actionName;
     public Vector2 actionDirection;
     public bool minimized;
@@ -24,8 +25,10 @@ public class ActionCardDisplay : MonoBehaviour
     {
         title.text = actionCard.title;
         description.text = actionCard.description;
-        remainingDurationTMP.text = actionCard.remainingDuration.ToString();
+        remainingDuration = actionCard.remainingDuration;
+        remainingDurationTMP.text = remainingDuration.ToString();
         icone.sprite = actionCard.icone;
+
         minimized = false;
         actionName = actionCard.actionName;
         actionDirection = actionCard.actionDirection;
@@ -55,10 +58,11 @@ public class ActionCardDisplay : MonoBehaviour
         //title
         title.enabled = false;
 
-        //remainingDurationTMP
+        //remainingDuration
         rectTransf = remainingDurationTMP.GetComponent<RectTransform>();
         rectTransf.sizeDelta = new Vector3(150, 85, 0);
         remainingDurationTMP.fontSize = 60;
+
         rectTransf.localPosition = new Vector3(0, 40, 0);
 
 
@@ -85,7 +89,7 @@ public class ActionCardDisplay : MonoBehaviour
         //title
         title.enabled = true;
 
-        //remainingDurationTMP
+        //remainingDuration
         rectTransf = remainingDurationTMP.GetComponent<RectTransform>();
         rectTransf.sizeDelta = new Vector3(200, 50, 0);
         rectTransf.localPosition = new Vector3(60, 115, 0);
@@ -94,9 +98,20 @@ public class ActionCardDisplay : MonoBehaviour
 
     public void consumeOneDuration()
     {
-        Debug.Log(remainingDurationTMP.text);
+        remainingDuration -= 1;
+        remainingDurationTMP.text = remainingDuration.ToString();
+        if (remainingDuration == 0)
+        {
+            destroyCardAction();
+        }
     }
-        public void upDirection()
+
+    public void destroyCardAction()
+    {
+        Destroy(gameObject);
+    }
+    
+    public void upDirection()
     {
         actionDirection = new Vector2(0,1);
     }

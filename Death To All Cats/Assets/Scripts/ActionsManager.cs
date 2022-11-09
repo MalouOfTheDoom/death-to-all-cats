@@ -9,6 +9,7 @@ public class ActionsManager : MonoBehaviour
     public ActionsDeck actionsDeck;
 
     public GameObject actionCardPrefab;
+    public bool allDecksAreConsumed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,31 +30,6 @@ public class ActionsManager : MonoBehaviour
         }
 
         return instanciatedObjects;
-    }
-
-    public void StartCycle()
-    {
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
-
-        foreach (GameObject character in characters)
-        {
-            CharacterActions characterActions = character.GetComponentInChildren<CharacterActions>();
-            characterActions.playNextActionCard();
-        }
-
-    }
-
-    public void temporaryAddCard(int index=0) //this function is temporary and should be rewrited 
-    {
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
-        GameObject character = characters[0];
-        cardFromDeckToCharacter(character, index);
-    }
-    public void temporaryRemoveCard(int index = 0) //this function is temporary and should be rewrited 
-    {
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
-        GameObject character = characters[0];
-        cardFromCharacterToDeck(character, index);
     }
 
     public void cardFromDeckToCharacter(GameObject character, int index)
