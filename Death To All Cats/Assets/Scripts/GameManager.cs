@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         {
             i += 1;
             if (i >= 100) { Debug.Log("100 rep"); break;  }
+
             if (!isCycleStarted)
             {
                 yield break;
@@ -49,23 +51,34 @@ public class GameManager : MonoBehaviour
 
             if (allDecksAreConsumed)
             {
-                //TODO
+                isCycleStarted = false;
+                //TODO: gameOver function
                 yield break;
             }
 
+            bool[] emptyDecks = new bool[characters.Length]; //for each character, indicates if its characterActions has no action left
+            int index = 0;
             foreach (GameObject character in characters)
             {
                 CharacterActions characterActions = character.GetComponentInChildren<CharacterActions>();
                 characterActions.playNextActionCard();
+
+                emptyDecks[index] = (characterActions.numberOfActionCards <= 0);
+
+                index += 1;
             }
 
-            //Wait for 2 seconds
-            yield return new WaitForSeconds(2);
+            //when all characters have played one step, we check if all decks are empty
+            allDecksAreConsumed = (emptyDecks.All(x => x)); //check if all bool in emptyDecks are true
+
+            //Wait for 1 seconds
+            yield return new WaitForSeconds(1);
         }
     }
 
     public void StartCycle()
     {
+        if (isCycleStarted) { return; }
         isCycleStarted = true;
         StartCoroutine(_updateCycle());
     }

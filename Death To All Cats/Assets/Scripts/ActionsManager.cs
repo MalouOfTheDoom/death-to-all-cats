@@ -9,6 +9,7 @@ public class ActionsManager : MonoBehaviour
     public ActionsDeck actionsDeck;
 
     public GameObject actionCardPrefab;
+    public bool allDecksAreConsumed = false;
 
     // Start is called before the first frame update
     void Start()
