@@ -8,10 +8,12 @@ public class ActionCard : ScriptableObject
 {
     public string title;
     public string description;
-    public bool[] direction;
+    // the card has a direction or not
+    public bool hasDirection;
     public int actionDuration;
     public int remainingDuration;
     public Sprite icone;
+    
 
     public string actionName;
     public Vector2 actionDirection = new Vector2(1, 0);
