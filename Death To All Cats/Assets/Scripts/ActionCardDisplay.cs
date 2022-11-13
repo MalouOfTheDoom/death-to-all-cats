@@ -8,21 +8,26 @@ public class ActionCardDisplay : MonoBehaviour
 {
 
     public ActionCard actionCard;
+    // directional buttons
+    public GameObject arrow;
+    public bool hasDirection;
+    public Image chosenButton;
 
     public Image background; 
     public Image icone;
     public TextMeshProUGUI title;
     public TextMeshProUGUI description;
     public TextMeshProUGUI remainingDurationTMP;
-
     public int remainingDuration;
     public string actionName;
     public Vector2 actionDirection;
     public bool minimized;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        
         title.text = actionCard.title;
         description.text = actionCard.description;
         remainingDuration = actionCard.remainingDuration;
@@ -32,6 +37,15 @@ public class ActionCardDisplay : MonoBehaviour
         minimized = false;
         actionName = actionCard.actionName;
         actionDirection = actionCard.actionDirection;
+
+        hasDirection = actionCard.hasDirection;
+    
+        if(!hasDirection)
+        {
+            arrow.SetActive(false);
+        }
+
+
     }
 
     public void minimize()
@@ -66,6 +80,13 @@ public class ActionCardDisplay : MonoBehaviour
         rectTransf.localPosition = new Vector3(0, 40, 0);
 
 
+        // arrow
+        arrow.SetActive(false);
+        // chosen button
+        if(hasDirection)
+        {
+            chosenButton.enabled = true;
+        }
 
     }
 
@@ -94,6 +115,15 @@ public class ActionCardDisplay : MonoBehaviour
         rectTransf.sizeDelta = new Vector3(200, 50, 0);
         rectTransf.localPosition = new Vector3(60, 115, 0);
 
+        // chosen button
+        chosenButton.enabled = false;
+
+        // arrow
+        if(hasDirection)
+        {
+            arrow.SetActive(true);
+        }
+
     }
 
     public void consumeOneDuration()
@@ -105,18 +135,23 @@ public class ActionCardDisplay : MonoBehaviour
     public void upDirection()
     {
         actionDirection = new Vector2(0,1);
+		chosenButton.transform.eulerAngles = new Vector3(0,0,90);
+
     }
     public void downDirection()
     {
         actionDirection = new Vector2(0,-1);
+		chosenButton.transform.eulerAngles = new Vector3(0,0,-90);
     }
     public void leftDirection()
     {
         actionDirection = new Vector2(-1,0);
+		chosenButton.transform.eulerAngles = new Vector3(0,0,180);
     }
     public void rightDirection()
     {
         actionDirection = new Vector2(1,0);
+		chosenButton.transform.eulerAngles = new Vector3(0,0,0);
     }
 
 }
